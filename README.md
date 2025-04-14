@@ -97,8 +97,8 @@ This project is licensed under the MIT License. Feel free to use it responsibly.
 - Ephem: For astronomical calculations.
 - Geopy: For geolocation services.
 - Django: The web framework powering this app.
-- [Nasa Images] (https://science.nasa.gov/moon/moon-phases/): Images of moon phases from NASA science website.
-- [Favicon Generator] (https://favicon.io/favicon-generator/) : Used for favicon
+- [Nasa Images](https://science.nasa.gov/moon/moon-phases): Images of moon phases from NASA science website.
+- [Favicon Generator](https://favicon.io/favicon-generator) : Used for favicon
 
 Next Plans
 -Resolve discrepancies in Moon accuracy.
