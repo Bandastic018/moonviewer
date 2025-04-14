@@ -30,7 +30,7 @@ MoonViewer is a Django-based web application that provides detailed insights int
    ```bash
    pip install -r requirements.txt
 
-4. **Create a .env file in the project root directory and add the following**:
+4.**Create a .env file in the project root directory and add the following**:
   DJANGO_SECRET_KEY=your-very-secret-key
   DJANGO_DEBUG=True
   DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
