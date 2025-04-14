@@ -22,11 +22,12 @@ MoonViewer is a Django-based web application that provides detailed insights int
    cd moonviewer
 
 2. **Set up a virtual environment**:
+   ```bash
    python -m venv venv  
   `source venv/bin/activate`  # On Windows use `venv\Scripts\activate` # and on Windows with Git Bash use `source venv/Scripts/activate`
 
 3.**Install the dependencies**:
-
+```bash
 pip install -r requirements.txt
 
 4. **Create a .env file in the project root directory and add the following**:
@@ -35,12 +36,15 @@ pip install -r requirements.txt
   DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
 
 5. **Run the migrations**:
+```bash
    python manage.py migrate
 
 6. **Start the development server**:
+```bash
    python manage.py runserver
 
 7.**Visit the app in your browser**:
+```bash
   http://127.0.0.1:8000
 
 
@@ -75,10 +79,13 @@ MoonViewer includes visual representations of the Moon's phases. Images are loca
 Contributions are welcome! Feel free to fork the project, create a branch, and submit a pull request.
 1. Fork the repository.
 2. Create a new branch:
+```bash
 - git checkout -b feature-name
 3. Commit your changes:
+```bash
   git commit -m "Add feature-name"
 4. Push to the branch:
+```bash
   git push origin feature-name
 5. Submit a pull request.
 
