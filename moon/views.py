@@ -196,7 +196,7 @@ def get_moon_details(lat, lon, dt):
 
         if moonrise and moonset :
             is_visible= moonrise<= dt <= moonset
-            
+
    # is_visible = False
     #if moonrise and moonset:
      #   is_visible = (moonrise <= dt <= moonset)
@@ -205,9 +205,7 @@ def get_moon_details(lat, lon, dt):
     #if moonrise and moonset:
      #   is_visible = (moonrise <= dt <= moonset) and (moon.alt > 0)
 
-    print(f"[DEBUG] Moonrise: {moonrise}, Moonset: {moonset}, Altitude: {moon.alt}")
-    print(f"[DEBUG] Moon Altitude: {moon.alt} radians, {float(moon.alt) * 180 / math.pi:.2f} degrees")
- 
+   
     # Calculate Moon age in days (since the last new moon)
     current_date = ephem.Date(dt)
     last_new = ephem.previous_new_moon(current_date)
@@ -301,16 +299,17 @@ def index(request):
         except Exception as e:
             error = "Error obtaining coordinates: " + str(e)
 
-        # Parse forecast datetime
+        # Parse forecast datetime using updated format
         dt_str = request.POST.get("datetime")
         try:
             if dt_str.strip():
-                dt = datetime.strptime(dt_str, "%Y-%m-%d %H:%M")
+                # Adjusted for `datetime-local` format
+                dt = datetime.strptime(dt_str, "%Y-%m-%dT%H:%M")
                 dt = dt.replace(tzinfo=timezone.utc)
             else:
                 dt = datetime.now(timezone.utc)
         except Exception as e:
-            error = "Error parsing datetime. Use YYYY-MM-DD HH:MM format."
+            error = "Error parsing datetime. Use the correct format from the date picker (YYYY-MM-DDTHH:MM)."
 
         if not error:
             details = get_moon_details(lat, lon, dt)
@@ -338,11 +337,8 @@ def index(request):
                 "altitude": f"{details['altitude']:.2f}",
                 "visible": details["visible"]
             }
-            
+
             img_rel_path = get_moon_image_path(details["phase"])
             result["img_url"] = static(img_rel_path)
 
-            
     return render(request, "moon/index.html", {"result": result, "error": error, "capitals": world_capitals})
-
-   
