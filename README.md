@@ -22,8 +22,8 @@ MoonViewer is a Django-based web application that provides detailed insights int
    cd moonviewer
 
 2. **Set up a virtual environment**:
-   python -m venv venv
-  source venv/bin/activate  # On Windows use `venv\Scripts\activate` # and on Windows with Git Bash use `source venv/Scripts/activate`
+   python -m venv venv  
+  `source venv/bin/activate`  # On Windows use `venv\Scripts\activate` # and on Windows with Git Bash use `source venv/Scripts/activate`
 
 3.**Install the dependencies**:
 
