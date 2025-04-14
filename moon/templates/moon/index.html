@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moon Details Viewer</title>
+	<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        .error { color: red; }
+        .result { margin-top: 1em; padding: 1em; border: 1px solid #ccc; }
+        img { margin-top: 1em; max-width: 150px; }
+    </style>
+</head>
+<body>
+    <h1>Moon Details Viewer</h1>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Location</legend>
+            <label for="capital">Select a Capital City:</label>
+            <select name="capital" id="capital">
+                {% for cap, coords in capitals.items %}
+                    <option value="{{ cap }}">{{ cap }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <label for="location_query">Or enter location name:</label>
+            <input type="text" name="location_query" id="location_query" placeholder="e.g., London">
+            <br><br>
+            <label for="latitude">Latitude (if manual):</label>
+            <input type="text" name="latitude" id="latitude" placeholder="optional">
+            <br><br>
+            <label for="longitude">Longitude (if manual):</label>
+            <input type="text" name="longitude" id="longitude" placeholder="optional">
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Date &amp; Time Forecast (UTC)</legend>
+            <label for="datetime">Enter Date &amp; Time (YYYY-MM-DD HH:MM):</label>
+            <input type="text" name="datetime" id="datetime" value="2025-04-01 19:00">
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Moon Age Unit</legend>
+            <label for="age_unit">Select unit:</label>
+            <select name="age_unit" id="age_unit">
+                <option value="Days">Days</option>
+                <option value="Hours">Hours</option>
+                <option value="Minutes">Minutes</option>
+                <option value="Seconds">Seconds</option>
+            </select>
+        </fieldset>
+        <br>
+        <button type="submit">Get Moon Details</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>Moon Details</h2>
+        <p><strong>Phase:</strong> {{ result.phase_percent }}% ({{ result.phase_name }})</p>
+        <p><strong>Moon Age:</strong> {{ result.moon_age }}</p>
+        <p><strong>Moonrise:</strong> {{ result.moonrise }}</p>
+        <p><strong>Moonset:</strong> {{ result.moonset }}</p>
+        <p><strong>Viewing Recommendation:</strong> {{ result.viewing }}</p>
+        <p><strong>Altitude at Forecast Time:</strong> {{ result.altitude }}°</p>
+        <p><strong>Visible?</strong> {{ result.visible|yesno:"Yes,No" }}</p>
+        <img src="{{ result.img_url }}" alt="Moon Phase Image">
+    </div>
+    {% endif %}
+
+</body>
+</html>
