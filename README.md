@@ -27,8 +27,8 @@ MoonViewer is a Django-based web application that provides detailed insights int
   `source venv/bin/activate`  # On Windows use `venv\Scripts\activate` # and on Windows with Git Bash use `source venv/Scripts/activate`
 
 3.**Install the dependencies**:
-```bash
-pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
 
 4. **Create a .env file in the project root directory and add the following**:
   DJANGO_SECRET_KEY=your-very-secret-key
@@ -36,16 +36,16 @@ pip install -r requirements.txt
   DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
 
 5. **Run the migrations**:
-```bash
-   python manage.py migrate
+   ```bash
+      python manage.py migrate
 
 6. **Start the development server**:
-```bash
-   python manage.py runserver
+   ```bash
+      python manage.py runserver
 
 7.**Visit the app in your browser**:
-```bash
-  http://127.0.0.1:8000
+   ```bash
+     http://127.0.0.1:8000
 
 
 📜 Usage
